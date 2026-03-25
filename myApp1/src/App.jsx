@@ -1,35 +1,32 @@
-import React,{useState} from 'react'
+import React from 'react'
+import axios from 'axios';
+import { useState } from 'react';
 
 function App() {
+    const [data, setdata] = useState([])
+  async  function getData(){
+        // const response =await fetch('https://jsonplaceholder.typicode.com/todos')
+        // const data = await response.json();
+        // console.log(data);
 
-  const [title, setTitle] = useState('');
 
-function submitHandler(e){
-  e.preventDefault();
+        // const response=await axios.get('https://jsonplaceholder.typicode.com/todos')
+        // console.log(response.data)
+        // setdata(response.data);
 
-  console.log("form submitted by:",title);
-  
-  setTitle('');
-}
-
+        // setdata(await axios.get('https://jsonplaceholder.typicode.com/todos')
+        // .then((res)=>res.data))
+        
+    }
+    // console.log(data)
   return (
-    <div className='h-screen w-full bg-black text-white p-3'>
-      <form onSubmit={(e)=>{
-          submitHandler(e);
-      }}>
-        <input 
-      type='text'
-      placeholder='Enter your name'
-      className='bg bg-gray-500 rounded-full px-2'
-      value={title}
-      onChange={(e)=>{
-        setTitle(e.target.value);
-      }}
-      />
-      <button 
-      className='bg bg-blue-500 hover:bg-blue-600 rounded-full px-2 text-black'
-      >Submit</button>
-      </form>
+    <div>
+        <button onClick={getData}>Get Data</button>
+        <div>
+            {data.map((elem,idx)=>{
+                <h3>{elem.id}</h3>
+            })}
+        </div>
     </div>
   )
 }
